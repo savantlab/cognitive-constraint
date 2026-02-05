@@ -4,6 +4,7 @@
   "private": true,
   "exports": {
     "./client": "./src/client.ts",
+    "./graphql": "./src/graphql.ts",
     "./types": "./src/types.ts"
   },
   "scripts": {

@@ -1,12 +1,28 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fafafa;
+  --foreground: #1a1a1a;
+  --muted: #6b7280;
+  --accent: #1e40af;
+  --accent-light: #3b82f6;
+  --border: #e5e7eb;
+  --surface: #ffffff;
+  --success: #059669;
+  --warning: #d97706;
+  --error: #dc2626;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --muted: #9ca3af;
+    --accent: #60a5fa;
+    --accent-light: #93c5fd;
+    --border: #27272a;
+    --surface: #18181b;
+    --success: #34d399;
+    --warning: #fbbf24;
+    --error: #f87171;
   }
 }
 
@@ -19,6 +35,8 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
 }
 
 * {
@@ -28,23 +46,16 @@ body {
 }
 
 a {
-  color: inherit;
+  color: var(--accent);
   text-decoration: none;
 }
 
-.imgDark {
-  display: none;
+a:hover {
+  text-decoration: underline;
 }
 
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
-  }
-
-  .imgLight {
-    display: none;
-  }
-  .imgDark {
-    display: unset;
   }
 }

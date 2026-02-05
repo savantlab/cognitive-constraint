@@ -1,0 +1,163 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #000 url('/cognitiveconstraintassets5.png') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.header {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.logo:hover {
+  text-decoration: none;
+}
+
+.main {
+  flex: 1;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  font-size: 4.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #ffffff;
+  line-height: 1.1;
+}
+
+.content {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.content p {
+  margin-bottom: 1.5rem;
+}
+
+.mission {
+  background: var(--background);
+  padding: 5rem 2rem;
+}
+
+.missionInner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.missionTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--foreground);
+}
+
+.missionText {
+  color: var(--muted);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.missionText:last-child {
+  margin-bottom: 0;
+}
+
+.consulting {
+  background: var(--surface);
+  padding: 5rem 2rem;
+}
+
+.consultingInner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.consultingTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--foreground);
+}
+
+.consultingText {
+  color: var(--muted);
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.consultingLink {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.consultingLink:hover {
+  text-decoration: underline;
+}
+
+.footer {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  padding: 2rem;
+}
+
+.footerInner {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footerText {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+.footerLinks {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footerLink {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+.footerLink:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 2rem 1.5rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .footerInner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
