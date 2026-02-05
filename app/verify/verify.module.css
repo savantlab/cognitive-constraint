@@ -1,0 +1,132 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: #000 url('/cognitiveconstraintassets4.png') no-repeat center center;
+  background-size: cover;
+}
+
+.card {
+  max-width: 400px;
+  width: 100%;
+  padding: 2.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--foreground);
+}
+
+.subtitle {
+  color: var(--muted);
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+.input {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 1rem;
+  background: var(--background);
+  color: var(--foreground);
+  transition: border-color 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.input::placeholder {
+  color: var(--muted);
+}
+
+.input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.button {
+  padding: 0.875rem 1.5rem;
+  background: var(--foreground);
+  color: var(--background);
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.button:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.backButton {
+  padding: 0.75rem;
+  background: transparent;
+  color: var(--muted);
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.backButton:hover {
+  color: var(--foreground);
+}
+
+.error {
+  color: #ef4444;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.emailNote {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.devCode {
+  padding: 0.75rem 1rem;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: var(--foreground);
+}
+
+.devCode code {
+  font-family: monospace;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}

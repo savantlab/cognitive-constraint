@@ -1,0 +1,162 @@
+.container {
+  min-height: 100vh;
+  background: var(--background);
+}
+
+.header {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.logo:hover {
+  text-decoration: none;
+}
+
+.main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--foreground);
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+}
+
+.searchBar {
+  margin-bottom: 2rem;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: var(--surface);
+  color: var(--foreground);
+  transition: border-color 0.2s;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.searchInput::placeholder {
+  color: var(--muted);
+}
+
+.noResults {
+  color: var(--muted);
+  font-size: 1rem;
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.papersList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.paper {
+  padding: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.paperHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.paperTitle {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--foreground);
+  line-height: 1.3;
+}
+
+.paperScore {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--background);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--success);
+  flex-shrink: 0;
+}
+
+.paperMeta {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.paperAbstract {
+  color: var(--foreground);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.readMore {
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.readMore:hover {
+  text-decoration: underline;
+}
+
+.archiveTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  color: var(--foreground);
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 2rem 1.5rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .paper {
+    padding: 1.5rem;
+  }
+
+  .paperHeader {
+    flex-direction: column;
+  }
+
+  .paperTitle {
+    font-size: 1.2rem;
+  }
+}

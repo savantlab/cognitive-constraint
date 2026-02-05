@@ -1,0 +1,745 @@
+/* Header */
+.header {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  position: relative;
+}
+
+.headerInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.logoAccent {
+  color: var(--accent);
+}
+
+.nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  flex-direction: column;
+  padding: 1rem 2rem;
+  gap: 1rem;
+  display: none;
+}
+
+.navLink {
+  color: var(--muted);
+  font-size: 1rem;
+  padding: 0.5rem 0;
+}
+
+.navLink:hover {
+  color: var(--foreground);
+  text-decoration: none;
+}
+
+/* Hamburger Toggle */
+.navToggle {
+  display: none;
+}
+
+.navToggleLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.navToggleLabel span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--foreground);
+  transition: all 0.3s ease;
+}
+
+.navToggle:checked ~ .nav {
+  display: flex;
+}
+
+.navToggle:checked ~ .navToggleLabel span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navToggle:checked ~ .navToggleLabel span:nth-child(2) {
+  opacity: 0;
+}
+
+.navToggle:checked ~ .navToggleLabel span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.signInButton {
+  background: var(--accent);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+}
+
+.signInButton:hover {
+  background: var(--accent-light);
+  text-decoration: none;
+}
+
+/* Hero Section */
+.hero {
+  background: #000 url('/hero-bg.png') no-repeat left center;
+  background-size: cover;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+.heroInner {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.heroContent {
+  max-width: 550px;
+  text-align: left;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.heroCta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ctaPrimary {
+  background: #ffffff;
+  color: #000000;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.ctaPrimary:hover {
+  background: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+}
+
+.ctaSecondary {
+  background: transparent;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.ctaSecondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+  text-decoration: none;
+}
+
+/* Section Layout */
+.section {
+  padding: 5rem 2rem;
+}
+
+.sectionAlt {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.sectionInner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--foreground);
+  text-align: center;
+  line-height: 1.1;
+}
+
+.sectionSubtitle {
+  font-size: 1.5rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.sectionTagline {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--foreground);
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Mission Section */
+.missionGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.missionCard {
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--background);
+}
+
+.missionIcon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.missionCardTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--foreground);
+}
+
+.missionCardText {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* How It Works Section */
+.processSteps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.processStep {
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.stepNumber {
+  width: 3rem;
+  height: 3rem;
+  background: var(--accent);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin: 0 auto 1rem;
+}
+
+.stepTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--foreground);
+}
+
+.stepText {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Recent Papers Preview */
+.papersPreview {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.paperCard {
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.paperInfo {
+  flex: 1;
+}
+
+.paperTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--foreground);
+}
+
+.paperMeta {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.paperScore {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--background);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--success);
+}
+
+.viewAllLink {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-weight: 500;
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  padding: 3rem 2rem;
+}
+
+.footerInner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footerText {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.footerLinks {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footerLink {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.footerLink:hover {
+  color: var(--foreground);
+}
+
+/* Section Image */
+.sectionImage {
+  background: #000 url('/section-bg.png') no-repeat right center;
+  background-size: contain;
+  width: 100%;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+}
+
+.sectionImageInner {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.sectionImageText {
+  flex: 1;
+  max-width: 50%;
+  padding: 4rem;
+  color: #ffffff;
+}
+
+.sectionImageText p {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1.5rem;
+}
+
+.sectionImageHighlight {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.sectionImageGraphic {
+  display: none;
+}
+
+/* Free Access Section */
+.freeAccessContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.freeAccessBlock {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.freeAccessHeading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--foreground);
+}
+
+.freeAccessText {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animateFadeIn {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Section Image 2 */
+.sectionImage2 {
+  background: #000 url('/cognitiveconstraintassets3.png') no-repeat center center;
+  background-size: cover;
+  width: 100%;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+}
+
+.sectionImage2Inner {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.sectionImage2Text {
+  flex: 1;
+  max-width: 70%;
+  padding: 4rem;
+  color: #ffffff;
+}
+
+.sectionImage2Text p {
+  font-size: 2.5rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+
+.sectionImage2Highlight {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Responsive Design */
+
+/* Large Tablet (1200px and below) */
+@media (max-width: 1200px) {
+  .heroInner {
+    justify-content: center;
+  }
+
+  .heroContent {
+    max-width: 100%;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 2.5rem;
+    border-radius: 12px;
+  }
+
+  .heroCta {
+    justify-content: center;
+  }
+
+  /* Section Image */
+  .sectionImage {
+    background-position: center center;
+    background-size: cover;
+  }
+
+  .sectionImageText {
+    max-width: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    margin: 2rem;
+    border-radius: 12px;
+  }
+}
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+  /* Header */
+  .headerInner {
+    padding: 1rem 1.5rem;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+  }
+
+  .nav {
+    gap: 1rem;
+  }
+
+  .navLink {
+    font-size: 0.85rem;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: auto;
+    background: #000;
+    background-image: none;
+  }
+
+  .heroInner {
+    padding: 3rem 1.5rem;
+    justify-content: center;
+  }
+
+  .heroContent {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .heroTitle {
+    font-size: 2.25rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1.1rem;
+  }
+
+  .heroCta {
+    justify-content: center;
+  }
+
+  /* Sections */
+  .section {
+    padding: 3rem 1.5rem;
+  }
+
+  .sectionTitle {
+    font-size: 2.25rem;
+  }
+
+  .sectionSubtitle {
+    font-size: 1.15rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Section Image */
+  .sectionImageInner {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .sectionImageText {
+    padding: 2.5rem 1.5rem;
+    order: 2;
+  }
+
+  .sectionImageText p {
+    font-size: 1.1rem;
+  }
+
+  .sectionImageHighlight {
+    font-size: 1.25rem;
+  }
+
+  .sectionImageGraphic {
+    max-width: 100%;
+    order: 1;
+  }
+
+  /* Free Access */
+  .freeAccessContent {
+    grid-template-columns: 1fr;
+  }
+
+  /* Papers */
+  .paperCard {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .paperScore {
+    align-self: flex-start;
+  }
+
+  /* Footer */
+  .footerInner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footerLinks {
+    justify-content: center;
+  }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+  /* Header */
+  .headerInner {
+    padding: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .nav {
+    gap: 0.75rem;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: auto;
+  }
+
+  .heroInner {
+    padding: 2.5rem 1rem;
+  }
+
+  .heroTitle {
+    font-size: 1.75rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1rem;
+  }
+
+  .heroCta {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .ctaPrimary,
+  .ctaSecondary {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Sections */
+  .section {
+    padding: 2.5rem 1rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.75rem;
+  }
+
+  .sectionSubtitle {
+    font-size: 1rem;
+  }
+
+  /* Section Image */
+  .sectionImageText {
+    padding: 2rem 1rem;
+  }
+
+  .sectionImageText p {
+    font-size: 1rem;
+  }
+
+  .sectionImageHighlight {
+    font-size: 1.1rem;
+  }
+
+  /* Free Access */
+  .freeAccessBlock {
+    padding: 1.25rem;
+  }
+
+  .freeAccessHeading {
+    font-size: 1rem;
+  }
+
+  .freeAccessText {
+    font-size: 0.9rem;
+  }
+
+  /* Papers */
+  .paperTitle {
+    font-size: 1rem;
+  }
+
+  .paperMeta {
+    font-size: 0.8rem;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 2rem 1rem;
+  }
+
+  .footerLinks {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}

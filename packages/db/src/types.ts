@@ -37,6 +37,7 @@ export interface Database {
           bio?: string | null
           created_at?: string
         }
+        Relationships: []
       }
       papers: {
         Row: {
@@ -49,6 +50,8 @@ export interface Database {
           status: 'DRAFT' | 'SUBMITTED' | 'UNDER_REVIEW' | 'PUBLISHED' | 'DISPUTED'
           validation_score: number
           doi: string | null
+          keywords: string[] | null
+          topics: string[] | null
           published_at: string | null
           created_at: string
           updated_at: string
@@ -63,6 +66,8 @@ export interface Database {
           status?: 'DRAFT' | 'SUBMITTED' | 'UNDER_REVIEW' | 'PUBLISHED' | 'DISPUTED'
           validation_score?: number
           doi?: string | null
+          keywords?: string[] | null
+          topics?: string[] | null
           published_at?: string | null
           created_at?: string
           updated_at?: string
@@ -77,10 +82,21 @@ export interface Database {
           status?: 'DRAFT' | 'SUBMITTED' | 'UNDER_REVIEW' | 'PUBLISHED' | 'DISPUTED'
           validation_score?: number
           doi?: string | null
+          keywords?: string[] | null
+          topics?: string[] | null
           published_at?: string | null
           created_at?: string
           updated_at?: string
         }
+        Relationships: [
+          {
+            foreignKeyName: "papers_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "authors"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       validations: {
         Row: {
@@ -110,6 +126,22 @@ export interface Database {
           notes?: string | null
           created_at?: string
         }
+        Relationships: [
+          {
+            foreignKeyName: "validations_paper_id_fkey"
+            columns: ["paper_id"]
+            isOneToOne: false
+            referencedRelation: "papers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "validations_validator_id_fkey"
+            columns: ["validator_id"]
+            isOneToOne: false
+            referencedRelation: "authors"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       replications: {
         Row: {
@@ -139,6 +171,22 @@ export interface Database {
           notes?: string | null
           created_at?: string
         }
+        Relationships: [
+          {
+            foreignKeyName: "replications_paper_id_fkey"
+            columns: ["paper_id"]
+            isOneToOne: false
+            referencedRelation: "papers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "replications_replicator_id_fkey"
+            columns: ["replicator_id"]
+            isOneToOne: false
+            referencedRelation: "authors"
+            referencedColumns: ["id"]
+          }
+        ]
       }
     }
     Views: {
@@ -152,3 +200,13 @@ export interface Database {
     }
   }
 }
+
+// Helper types for easier usage
+export type Tables<T extends keyof Database['public']['Tables']> = Database['public']['Tables'][T]['Row']
+export type InsertTables<T extends keyof Database['public']['Tables']> = Database['public']['Tables'][T]['Insert']
+export type UpdateTables<T extends keyof Database['public']['Tables']> = Database['public']['Tables'][T]['Update']
+
+export type Author = Tables<'authors'>
+export type Paper = Tables<'papers'>
+export type Validation = Tables<'validations'>
+export type Replication = Tables<'replications'>

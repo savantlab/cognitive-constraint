@@ -1,0 +1,261 @@
+.container {
+  min-height: 100vh;
+  background: var(--background);
+}
+
+.header {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.logo:hover {
+  text-decoration: none;
+}
+
+.main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.backLink {
+  display: inline-block;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.backLink:hover {
+  color: var(--foreground);
+}
+
+.paper {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2.5rem;
+}
+
+.paperHeader {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.paperTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+  color: var(--foreground);
+}
+
+.paperMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.validations {
+  color: var(--success);
+}
+
+.abstract {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.abstract h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--foreground);
+}
+
+.abstract p {
+  color: var(--muted);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+.keywords,
+.topics {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.keywords h2,
+.topics h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--foreground);
+}
+
+.keywordsList,
+.topicsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.keyword {
+  padding: 0.35rem 0.75rem;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.topic {
+  padding: 0.35rem 0.75rem;
+  background: var(--accent);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: white;
+  font-weight: 500;
+}
+
+.validation {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.validation h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--foreground);
+}
+
+.validationText {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.validateContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.validateButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--foreground);
+  color: var(--background);
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.validateButton:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.validateButton:disabled {
+  cursor: not-allowed;
+}
+
+.validateButton.validated {
+  background: var(--success);
+  color: white;
+}
+
+.checkIcon {
+  font-size: 1.1rem;
+}
+
+.validationCount {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.share {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.share h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--foreground);
+}
+
+.shareButtons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.shareButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--background);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.shareButton:hover {
+  border-color: var(--foreground);
+  color: var(--foreground);
+}
+
+.content p {
+  color: var(--foreground);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.content p:last-child {
+  margin-bottom: 0;
+}
+
+.title {
+  font-size: 2rem;
+  color: var(--foreground);
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 1.5rem;
+  }
+
+  .paper {
+    padding: 1.5rem;
+  }
+
+  .paperTitle {
+    font-size: 1.5rem;
+  }
+
+  .paperMeta {
+    font-size: 0.85rem;
+  }
+}
