@@ -145,6 +145,7 @@ export default function ContactPage() {
           </p>
           <div className={styles.footerLinks}>
             <Link href="/about" className={styles.footerLink}>About</Link>
+            <Link href="/education" className={styles.footerLink}>Education</Link>
             <Link href="/contact" className={styles.footerLink}>Contact</Link>
             <Link href="/legal" className={styles.footerLink}>Legal</Link>
             <Link href="/notify" className={styles.footerLink}>Get Notified</Link>

@@ -1,5 +1,11 @@
+import { Metadata } from "next";
 import Link from "next/link";
 import styles from "./legal.module.css";
+
+export const metadata: Metadata = {
+  title: "Terms of Access",
+  description: "End User License Agreement and Terms of Access for Cognitive Constraint Journal. Individual, Educational, Institutional, Corporate, Non-Profit, and Publisher licensing.",
+};
 
 export default function LegalPage() {
   return (
@@ -83,7 +89,9 @@ export default function LegalPage() {
           </p>
           <div className={styles.footerLinks}>
             <Link href="/about" className={styles.footerLink}>About</Link>
+            <Link href="/education" className={styles.footerLink}>Education</Link>
             <Link href="/contact" className={styles.footerLink}>Contact</Link>
+            <Link href="/legal" className={styles.footerLink}>Legal</Link>
             <Link href="/notify" className={styles.footerLink}>Get Notified</Link>
           </div>
         </div>

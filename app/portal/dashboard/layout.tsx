@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import styles from "../../dashboard/dashboard.module.css";
+import LogoutButton from "./LogoutButton";
 
 interface PortalSession {
   email: string;
@@ -51,15 +52,34 @@ export default async function PortalDashboardLayout({
             Overview
           </Link>
           {isReviewer && (
-            <Link href="/portal/dashboard/reviews" className={styles.navLink}>
-              Review Queue
-            </Link>
+            <>
+              <Link href="/portal/dashboard/reviews" className={styles.navLink}>
+                Review Queue
+              </Link>
+              <Link href="/portal/dashboard/expertise" className={styles.navLink}>
+                My Expertise
+              </Link>
+            </>
           )}
+          <Link href="/portal/dashboard/proposals" className={styles.navLink}>
+            Proposals
+          </Link>
+          <Link href="/portal/dashboard/messages" className={styles.navLink}>
+            Messages
+          </Link>
           {(isAuthor || isReviewer) && (
-            <Link href="/portal/dashboard/submissions" className={styles.navLink}>
-              My Submissions
-            </Link>
+            <>
+              <Link href="/portal/dashboard/submissions" className={styles.navLink}>
+                My Submissions
+              </Link>
+              <Link href="/portal/dashboard/revisions" className={styles.navLink}>
+                Revisions
+              </Link>
+            </>
           )}
+          <Link href="/portal/dashboard/payments" className={styles.navLink}>
+            Payments
+          </Link>
           <Link href="/portal/dashboard/profile" className={styles.navLink}>
             Profile
           </Link>
@@ -69,6 +89,7 @@ export default async function PortalDashboardLayout({
           <Link href="/" className={styles.backLink}>
             ← Back to Journal
           </Link>
+          <LogoutButton />
         </div>
       </aside>
 

@@ -31,6 +31,9 @@ export default async function DashboardLayout({
           <Link href="/dashboard/papers" className={styles.navLink}>
             Papers
           </Link>
+          <Link href="/dashboard/proposals" className={styles.navLink}>
+            Proposals
+          </Link>
           <Link href="/dashboard/invitations" className={styles.navLink}>
             Invitations
           </Link>

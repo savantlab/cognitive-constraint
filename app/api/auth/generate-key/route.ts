@@ -8,14 +8,19 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
-const mailgun = new Mailgun(FormData);
-const mg = mailgun.client({
-  username: 'api',
-  key: process.env.MAILGUN_API_KEY || '',
-});
-
+const MAILGUN_API_KEY = process.env.MAILGUN_API_KEY;
 const MAILGUN_DOMAIN = process.env.MAILGUN_DOMAIN || '';
 const FROM_EMAIL = process.env.MAILGUN_FROM_EMAIL || 'noreply@cognitiveconstraint.com';
+
+// Only initialize Mailgun if API key is configured
+let mg: ReturnType<InstanceType<typeof Mailgun>['client']> | null = null;
+if (MAILGUN_API_KEY) {
+  const mailgun = new Mailgun(FormData);
+  mg = mailgun.client({
+    username: 'api',
+    key: MAILGUN_API_KEY,
+  });
+}
 
 function generateCode(): string {
   // Generate a 6-character alphanumeric code
@@ -63,31 +68,35 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Send email with code
-    try {
-      await mg.messages.create(MAILGUN_DOMAIN, {
-        from: FROM_EMAIL,
-        to: normalizedEmail,
-        subject: 'Your Cognitive Constraint Journal Access Code',
-        text: `Your access code is: ${code}\n\nThis code expires in 15 minutes.`,
-        html: `
-          <div style="font-family: sans-serif; max-width: 400px; margin: 0 auto;">
-            <h2 style="color: #000;">Cognitive Constraint Journal</h2>
-            <p>Your access code is:</p>
-            <p style="font-size: 32px; font-weight: bold; letter-spacing: 4px; color: #000;">${code}</p>
-            <p style="color: #666;">This code expires in 15 minutes.</p>
-          </div>
-        `,
-      });
-    } catch (emailError) {
-      console.error('Error sending email:', emailError);
-      // Don't fail the request if email fails in development
-      if (process.env.NODE_ENV === 'production') {
-        return NextResponse.json(
-          { error: 'Failed to send access code email' },
-          { status: 500 }
-        );
+    // Send email with code (only if Mailgun is configured)
+    if (mg) {
+      try {
+        await mg.messages.create(MAILGUN_DOMAIN, {
+          from: FROM_EMAIL,
+          to: normalizedEmail,
+          subject: 'Your Cognitive Constraint Journal Access Code',
+          text: `Your access code is: ${code}\n\nThis code expires in 15 minutes.`,
+          html: `
+            <div style="font-family: sans-serif; max-width: 400px; margin: 0 auto;">
+              <h2 style="color: #000;">Cognitive Constraint Journal</h2>
+              <p>Your access code is:</p>
+              <p style="font-size: 32px; font-weight: bold; letter-spacing: 4px; color: #000;">${code}</p>
+              <p style="color: #666;">This code expires in 15 minutes.</p>
+            </div>
+          `,
+        });
+      } catch (emailError) {
+        console.error('Error sending email:', emailError);
+        // Don't fail the request if email fails in development
+        if (process.env.NODE_ENV === 'production') {
+          return NextResponse.json(
+            { error: 'Failed to send access code email' },
+            { status: 500 }
+          );
+        }
       }
+    } else {
+      console.log('Mailgun not configured, skipping email send');
     }
 
     console.log(`Access code for ${normalizedEmail}: ${code}`);

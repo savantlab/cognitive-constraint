@@ -1,8 +1,14 @@
+import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { isAuthenticated } from "../lib/auth";
 import Link from "next/link";
 import styles from "./papers.module.css";
 import PapersList from "./PapersList";
+
+export const metadata: Metadata = {
+  title: "Papers",
+  description: "Browse peer-reviewed publications in cognitive science and psychology. Free access for individual readers.",
+};
 
 export default async function PapersPage() {
   // TODO: Re-enable auth before production
@@ -104,6 +110,7 @@ export default async function PapersPage() {
           </p>
           <div className={styles.footerLinks}>
             <Link href="/about" className={styles.footerLink}>About</Link>
+            <Link href="/education" className={styles.footerLink}>Education</Link>
             <Link href="/contact" className={styles.footerLink}>Contact</Link>
             <Link href="/legal" className={styles.footerLink}>Legal</Link>
             <Link href="/notify" className={styles.footerLink}>Get Notified</Link>
