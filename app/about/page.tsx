@@ -1,5 +1,11 @@
+import { Metadata } from "next";
 import Link from "next/link";
 import styles from "./about.module.css";
+
+export const metadata: Metadata = {
+  title: "About",
+  description: "Quality over quantity. Cognitive Constraint is an unprecedented academic publication taking novel steps to correct massive mistakes in cognitive science.",
+};
 
 export default function AboutPage() {
   return (
@@ -51,8 +57,10 @@ export default function AboutPage() {
           </p>
           <div className={styles.footerLinks}>
             <Link href="/about" className={styles.footerLink}>About</Link>
+            <Link href="/education" className={styles.footerLink}>Education</Link>
             <Link href="/contact" className={styles.footerLink}>Contact</Link>
             <Link href="/legal" className={styles.footerLink}>Legal</Link>
+            <Link href="/notify" className={styles.footerLink}>Get Notified</Link>
           </div>
         </div>
       </footer>

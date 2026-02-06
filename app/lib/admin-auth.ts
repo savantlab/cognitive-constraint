@@ -45,3 +45,6 @@ export async function requireAdmin(): Promise<{ authorized: true; email: string 
   if (email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()) return { authorized: false, email: null };
   return { authorized: true, email };
 }
+
+// Alias for backward compatibility
+export const isAdminAuthenticated = isAdmin;

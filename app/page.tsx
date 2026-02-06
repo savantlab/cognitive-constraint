@@ -19,6 +19,7 @@ export default function Home() {
           </label>
           <nav className={styles.nav}>
             <Link href="/papers" className={styles.navLink}>Papers</Link>
+            <Link href="/education" className={styles.navLink}>Education</Link>
             <Link href="/about" className={styles.navLink}>About</Link>
             <Link href="/contact" className={styles.navLink}>Contact</Link>
             <Link href="/legal" className={styles.navLink}>Legal</Link>
@@ -102,6 +103,7 @@ export default function Home() {
           </p>
           <div className={styles.footerLinks}>
             <Link href="/about" className={styles.footerLink}>About</Link>
+            <Link href="/education" className={styles.footerLink}>Education</Link>
             <Link href="/contact" className={styles.footerLink}>Contact</Link>
             <Link href="/legal" className={styles.footerLink}>Legal</Link>
             <Link href="/notify" className={styles.footerLink}>Get Notified</Link>

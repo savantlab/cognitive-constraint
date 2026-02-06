@@ -4,9 +4,11 @@ import { useState, useEffect } from "react";
 import styles from "./CookieConsent.module.css";
 
 export default function CookieConsent() {
+  const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const consent = localStorage.getItem("ccj_cookie_consent");
     if (!consent) {
       setVisible(true);
@@ -23,7 +25,7 @@ export default function CookieConsent() {
     setVisible(false);
   };
 
-  if (!visible) return null;
+  if (!mounted || !visible) return null;
 
   return (
     <div className={styles.banner}>
