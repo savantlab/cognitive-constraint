@@ -43,6 +43,34 @@ export async function POST(request: NextRequest) {
       .update({ verified: true })
       .eq('id', data.id);
 
+    // Track reader - upsert to readers table
+    const userAgent = request.headers.get('user-agent') || '';
+    const { data: existingReader } = await supabase
+      .from('readers')
+      .select('id, access_count')
+      .eq('email', normalizedEmail)
+      .single();
+
+    if (existingReader) {
+      // Update existing reader
+      await supabase
+        .from('readers')
+        .update({
+          last_access_at: new Date().toISOString(),
+          access_count: (existingReader.access_count || 0) + 1,
+          user_agent: userAgent,
+        })
+        .eq('id', existingReader.id);
+    } else {
+      // Create new reader
+      await supabase
+        .from('readers')
+        .insert({
+          email: normalizedEmail,
+          user_agent: userAgent,
+        });
+    }
+
     // Set a cookie to track verification
     const cookieStore = await cookies();
     const accessToken = Buffer.from(`${normalizedEmail}:${Date.now()}`).toString('base64');
@@ -51,7 +79,7 @@ export async function POST(request: NextRequest) {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
-      maxAge: 60 * 60 * 24 * 30, // 30 days
+      maxAge: 60 * 60 * 48, // 48 hours
       path: '/',
     });
 

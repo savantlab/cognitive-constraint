@@ -26,11 +26,20 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className={styles.consulting}>
-        <div className={styles.consultingInner}>
-          <h2 className={styles.consultingTitle}>Consulting Services</h2>
-          <p className={styles.consultingText}>
-            Advancing the status quo is hard. You might be in need of experts who are on the cutting edge. See our <Link href="/services" className={styles.consultingLink}>services</Link> section.
+      <section className={styles.ethics}>
+        <div className={styles.ethicsInner}>
+          <h2 className={styles.ethicsTitle}>We Adhere To COPE</h2>
+          <p className={styles.ethicsText}>
+            Cognitive Constraint is pushing the limits of academic publishing in every conceivable way, yet we still believe in integrity. We want to only publish the most original and relevant work in Psychology and Behavioral Science. We pay our peer reviewers to be brutally honest unlike virtually all other academic publications which rely on quantity of submissions to stay in business. This model has been revised two-fold. We pay for published work which means if it isn't our standard, we don't want to publish it. Cognitive Constraint authors are not beholden to citation counts either. In this more traditional publishing business model the peer review process can work as it is intended and without the expectation that the reviewer simply comply with the status quo. Learn more about publication ethics at <a href="https://publicationethics.org/guidance/guideline/ethical-guidelines-peer-reviewers/plain-text" target="_blank" rel="noopener noreferrer" className={styles.ethicsLink}>COPE (Committee on Publication Ethics)</a>.
+          </p>
+        </div>
+      </section>
+
+      <section className={styles.legal}>
+        <div className={styles.legalInner}>
+          <h2 className={styles.legalTitle}>The Legal Frontier</h2>
+          <p className={styles.legalText}>
+            Radically altering the landscape is more than challenging. It requires out-of-the-box adaptations that are not expected. Cognitive Constraint will always be completely free for the individual user to access, read, and share within non-commercial usage and Fair Use clauses. To implement this model we require that every other type of user pay their tier fees or operate under a specific <Link href="/legal" className={styles.legalLink}>license</Link>. Advancing the status quo is hard. You might be in need of experts who are on the cutting edge. See our <Link href="/services" className={styles.legalLink}>services</Link> section.
           </p>
         </div>
       </section>
@@ -43,6 +52,7 @@ export default function AboutPage() {
           <div className={styles.footerLinks}>
             <Link href="/about" className={styles.footerLink}>About</Link>
             <Link href="/contact" className={styles.footerLink}>Contact</Link>
+            <Link href="/legal" className={styles.footerLink}>Legal</Link>
           </div>
         </div>
       </footer>

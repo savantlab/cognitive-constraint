@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { isAdmin } from "../lib/admin-auth";
 import Link from "next/link";
 import styles from "./dashboard.module.css";
+import LogoutButton from "./LogoutButton";
 
 export default async function DashboardLayout({
   children,
@@ -10,8 +11,9 @@ export default async function DashboardLayout({
 }) {
   const authorized = await isAdmin();
 
+  // Don't wrap login page with dashboard layout
   if (!authorized) {
-    redirect("/verify?redirect=/dashboard");
+    return <>{children}</>;
   }
 
   return (
@@ -35,11 +37,27 @@ export default async function DashboardLayout({
           <Link href="/dashboard/users" className={styles.navLink}>
             Users
           </Link>
+          <Link href="/dashboard/payments" className={styles.navLink}>
+            Payments
+          </Link>
+          <Link href="/dashboard/emails" className={styles.navLink}>
+            Emails
+          </Link>
+          <Link href="/dashboard/analytics" className={styles.navLink}>
+            Analytics
+          </Link>
+          <Link href="/dashboard/subscriptions" className={styles.navLink}>
+            Subscriptions
+          </Link>
+          <Link href="/dashboard/invoices" className={styles.navLink}>
+            Invoices
+          </Link>
         </nav>
         <div className={styles.sidebarFooter}>
           <Link href="/" className={styles.backLink}>
             ← Back to site
           </Link>
+          <LogoutButton />
         </div>
       </aside>
       <main className={styles.main}>

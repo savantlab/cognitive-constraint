@@ -21,6 +21,8 @@ export default function Home() {
             <Link href="/papers" className={styles.navLink}>Papers</Link>
             <Link href="/about" className={styles.navLink}>About</Link>
             <Link href="/contact" className={styles.navLink}>Contact</Link>
+            <Link href="/legal" className={styles.navLink}>Legal</Link>
+            <Link href="/notify" className={styles.navLink}>Get Notified</Link>
           </nav>
         </div>
       </header>
@@ -101,6 +103,8 @@ export default function Home() {
           <div className={styles.footerLinks}>
             <Link href="/about" className={styles.footerLink}>About</Link>
             <Link href="/contact" className={styles.footerLink}>Contact</Link>
+            <Link href="/legal" className={styles.footerLink}>Legal</Link>
+            <Link href="/notify" className={styles.footerLink}>Get Notified</Link>
           </div>
         </div>
       </footer>

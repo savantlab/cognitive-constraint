@@ -96,6 +96,20 @@ export default async function PapersPage() {
         
         <PapersList recentPapers={recentPapers} archivedPapers={archivedPapers} />
       </main>
+
+      <footer className={styles.footer}>
+        <div className={styles.footerInner}>
+          <p className={styles.footerText}>
+            © 2026 Cognitive Constraint Journal. Free access for all.
+          </p>
+          <div className={styles.footerLinks}>
+            <Link href="/about" className={styles.footerLink}>About</Link>
+            <Link href="/contact" className={styles.footerLink}>Contact</Link>
+            <Link href="/legal" className={styles.footerLink}>Legal</Link>
+            <Link href="/notify" className={styles.footerLink}>Get Notified</Link>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
