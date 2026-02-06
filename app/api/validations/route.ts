@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase, getServiceClient } from '@repo/db/client';
-import type { InsertTables, UpdateTables } from '@repo/db/types';
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const getServiceClient = () => createClient(supabaseUrl, supabaseServiceKey);
 
 type ValidationType = 'MATHEMATICAL_PROOF' | 'COMPUTATIONAL_REPLICATION' | 'EXPERT_REVIEW' | 'REFUTATION_ATTEMPT';
 
@@ -92,7 +98,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Insert validation
-    const insertData: InsertTables<'validations'> = {
+    const insertData = {
       paper_id,
       validator_id,
       type,
@@ -122,7 +128,7 @@ export async function POST(request: NextRequest) {
       .eq('paper_id', paper_id)
       .eq('result', 'DISPUTED');
 
-    const updates: UpdateTables<'papers'> = {
+    const updates: Record<string, unknown> = {
       validation_score: newScore,
       updated_at: new Date().toISOString(),
     };

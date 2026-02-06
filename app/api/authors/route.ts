@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase, getServiceClient } from '@repo/db/client';
-import type { InsertTables } from '@repo/db/types';
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const getServiceClient = () => createClient(supabaseUrl, supabaseServiceKey);
 
 // GET /api/authors - List all authors
 export async function GET(request: NextRequest) {
@@ -49,7 +55,7 @@ export async function POST(request: NextRequest) {
 
     const serviceClient = getServiceClient();
     
-    const insertData: InsertTables<'authors'> = {
+    const insertData = {
       email,
       name,
       orcid: orcid || null,

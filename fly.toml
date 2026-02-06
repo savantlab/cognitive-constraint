@@ -2,6 +2,10 @@ app = 'cognitive-constraint'
 primary_region = 'sjc'
 
 [build]
+  [build.args]
+    NEXT_PUBLIC_SUPABASE_URL = "https://qqvfpyvczkygghbbqgid.supabase.co"
+    NEXT_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFxdmZweXZjemt5Z2doYmJxZ2lkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0MTAzNDUsImV4cCI6MjA4NTk4NjM0NX0.zRor6nqGKsYynWHFqTapM8MdcoHP4dpvXHpabZIizhE"
+    SUPABASE_SERVICE_ROLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFxdmZweXZjemt5Z2doYmJxZ2lkIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDQxMDM0NSwiZXhwIjoyMDg1OTg2MzQ1fQ.H6lkYeTRhVz9qWXv0jWnAcLP9uXoUbJV7S9AAZYEGWA"
 
 [http_service]
   internal_port = 3000

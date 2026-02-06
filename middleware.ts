@@ -11,6 +11,11 @@ export function middleware(request: NextRequest) {
   
   // Admin subdomain → rewrite to /dashboard routes
   if (subdomain === "admin") {
+    // Don't rewrite API routes
+    if (url.pathname.startsWith("/api")) {
+      return NextResponse.next();
+    }
+    
     // If accessing root of admin subdomain, go to dashboard
     if (url.pathname === "/") {
       url.pathname = "/dashboard";
@@ -47,6 +52,11 @@ export function middleware(request: NextRequest) {
   
   // Portal subdomain → rewrite to /portal routes
   if (subdomain === "portal") {
+    // Don't rewrite API routes
+    if (url.pathname.startsWith("/api")) {
+      return NextResponse.next();
+    }
+    
     // If accessing root of portal subdomain, go to portal
     if (url.pathname === "/") {
       url.pathname = "/portal";

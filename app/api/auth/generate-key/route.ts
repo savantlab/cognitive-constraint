@@ -3,20 +3,18 @@ import { NextRequest, NextResponse } from 'next/server';
 import Mailgun from 'mailgun.js';
 import FormData from 'form-data';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+function getSupabase() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  );
+}
 
-const MAILGUN_API_KEY = process.env.MAILGUN_API_KEY;
-const MAILGUN_DOMAIN = process.env.MAILGUN_DOMAIN || '';
-const FROM_EMAIL = process.env.MAILGUN_FROM_EMAIL || 'noreply@cognitiveconstraint.com';
-
-// Only initialize Mailgun if API key is configured
-let mg: ReturnType<InstanceType<typeof Mailgun>['client']> | null = null;
-if (MAILGUN_API_KEY) {
+function getMailgunClient() {
+  const MAILGUN_API_KEY = process.env.MAILGUN_API_KEY;
+  if (!MAILGUN_API_KEY) return null;
   const mailgun = new Mailgun(FormData);
-  mg = mailgun.client({
+  return mailgun.client({
     username: 'api',
     key: MAILGUN_API_KEY,
   });
@@ -33,6 +31,11 @@ function generateCode(): string {
 }
 
 export async function POST(request: NextRequest) {
+  const supabase = getSupabase();
+  const mg = getMailgunClient();
+  const MAILGUN_DOMAIN = process.env.MAILGUN_DOMAIN || '';
+  const FROM_EMAIL = process.env.MAILGUN_FROM_EMAIL || 'noreply@cognitiveconstraint.com';
+  
   try {
     const { email } = await request.json();
 

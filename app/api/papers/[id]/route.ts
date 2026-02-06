@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase, getServiceClient } from '@repo/db/client';
-import type { UpdateTables } from '@repo/db/types';
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const getServiceClient = () => createClient(supabaseUrl, supabaseServiceKey);
 
 type RouteParams = { params: Promise<{ id: string }> };
 
@@ -42,7 +48,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
     const body = await request.json();
     const allowedFields = ['title', 'abstract', 'content', 'status', 'doi'];
     
-    const updates: UpdateTables<'papers'> = {};
+    const updates: Record<string, unknown> = {};
     for (const field of allowedFields) {
       if (body[field] !== undefined) {
         (updates as Record<string, unknown>)[field] = body[field];
@@ -55,7 +61,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
 
     // If title is updated, regenerate slug
     if (updates.title) {
-      updates.slug = updates.title
+      updates.slug = (updates.title as string)
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/^-|-$/g, '');
