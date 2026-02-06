@@ -14,6 +14,16 @@ export default function ServicesPage() {
         <h1 className={styles.title}>Services</h1>
         
         <div className={styles.content}>
+          <section className={styles.section}>
+            <p className={styles.text}>
+              Invalidating IQ scoring as a psychometric is going to accrue monumental implications and not only pushback, 
+              but assertive action against the system that engaged in the wrongdoing and poor assumptions. 
+              We can provide whitepapers, expert witness testimony, and educational materials as consultancy.
+            </p>
+            <p className={styles.text}>
+              Please feel free to <Link href="/contact" className={styles.link}>contact us</Link> with further inquiries, questions, and concerns.
+            </p>
+          </section>
         </div>
       </main>
 

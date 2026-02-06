@@ -443,6 +443,16 @@
   line-height: 1.7;
 }
 
+.inlineLink {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.inlineLink:hover {
+  color: var(--accent);
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;

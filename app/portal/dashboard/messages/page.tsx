@@ -1,7 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { createClient } from "@supabase/supabase-js";
 import styles from "../../../dashboard/dashboard.module.css";
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 interface Message {
   id: string;
@@ -28,10 +34,64 @@ export default function MessagesPage() {
   const [newMessage, setNewMessage] = useState("");
   const [loading, setLoading] = useState(true);
   const [sending, setSending] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Scroll to bottom when messages change
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   useEffect(() => {
     fetchThreads();
   }, []);
+
+  // Subscribe to realtime messages
+  useEffect(() => {
+    if (!selectedThread) return;
+
+    const channel = supabase
+      .channel(`thread-${selectedThread.id}`)
+      .on(
+        "postgres_changes",
+        {
+          event: "INSERT",
+          schema: "public",
+          table: "review_messages",
+          filter: `thread_id=eq.${selectedThread.id}`,
+        },
+        (payload) => {
+          // Add new message to the thread
+          const newMsg = payload.new as Message;
+          setSelectedThread((prev) => {
+            if (!prev) return prev;
+            // Avoid duplicates
+            if (prev.messages.some((m) => m.id === newMsg.id)) return prev;
+            return {
+              ...prev,
+              messages: [...prev.messages, newMsg],
+            };
+          });
+          // Also update threads list
+          setThreads((prev) =>
+            prev.map((t) =>
+              t.id === selectedThread.id
+                ? { ...t, messages: [...t.messages, newMsg] }
+                : t
+            )
+          );
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [selectedThread?.id]);
+
+  // Scroll to bottom when selected thread changes or new messages arrive
+  useEffect(() => {
+    scrollToBottom();
+  }, [selectedThread?.messages]);
 
   const fetchThreads = async () => {
     try {
@@ -247,6 +307,7 @@ export default function MessagesPage() {
                     </div>
                   </div>
                 ))}
+                <div ref={messagesEndRef} />
               </div>
 
               {/* Input */}
