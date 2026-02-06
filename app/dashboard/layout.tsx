@@ -57,9 +57,9 @@ export default async function DashboardLayout({
           </Link>
         </nav>
         <div className={styles.sidebarFooter}>
-          <Link href="/" className={styles.backLink}>
+          <a href="https://cognitiveconstraint.com" className={styles.backLink}>
             ← Back to site
-          </Link>
+          </a>
           <LogoutButton />
         </div>
       </aside>

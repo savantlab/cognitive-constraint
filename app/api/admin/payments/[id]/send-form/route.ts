@@ -3,19 +3,20 @@ import { NextRequest, NextResponse } from 'next/server';
 import Mailgun from 'mailgun.js';
 import FormData from 'form-data';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+function getSupabase() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  );
+}
 
-const mailgun = new Mailgun(FormData);
-const mg = mailgun.client({
-  username: 'api',
-  key: process.env.MAILGUN_API_KEY || '',
-});
-
-const MAILGUN_DOMAIN = process.env.MAILGUN_DOMAIN || '';
-const FROM_EMAIL = process.env.MAILGUN_FROM_EMAIL || 'noreply@cognitiveconstraint.com';
+function getMailgunClient() {
+  const mailgun = new Mailgun(FormData);
+  return mailgun.client({
+    username: 'api',
+    key: process.env.MAILGUN_API_KEY || '',
+  });
+}
 
 // POST /api/admin/payments/[id]/send-form - Send payment form email
 export async function POST(
@@ -23,6 +24,10 @@ export async function POST(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
+  const supabase = getSupabase();
+  const mg = getMailgunClient();
+  const MAILGUN_DOMAIN = process.env.MAILGUN_DOMAIN || '';
+  const FROM_EMAIL = process.env.MAILGUN_FROM_EMAIL || 'noreply@cognitiveconstraint.com';
 
   // Get the payment
   const { data: payment, error: paymentError } = await supabase

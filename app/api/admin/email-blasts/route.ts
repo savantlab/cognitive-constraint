@@ -1,13 +1,16 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+function getSupabase() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  );
+}
 
 // GET /api/admin/email-blasts - List all email blasts
 export async function GET() {
+  const supabase = getSupabase();
   const { data, error } = await supabase
     .from('email_blasts')
     .select('*')
@@ -26,6 +29,7 @@ export async function GET() {
 
 // POST /api/admin/email-blasts - Create a new email blast
 export async function POST(request: NextRequest) {
+  const supabase = getSupabase();
   try {
     const body = await request.json();
     const { subject, html_content, recipient_type, custom_emails, paper_id, scheduled_for, status } = body;

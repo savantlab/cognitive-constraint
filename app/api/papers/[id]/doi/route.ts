@@ -1,6 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServiceClient } from '@repo/db/client';
-import type { Paper, Author, UpdateTables } from '@repo/db/types';
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+
+const getServiceClient = () => createClient(supabaseUrl, supabaseServiceKey);
+
+interface Paper {
+  id: string;
+  title: string;
+  slug: string;
+  abstract: string;
+  status: string;
+  doi: string | null;
+  published_at: string | null;
+}
+
+interface Author {
+  name: string;
+  orcid?: string | null;
+}
 
 type RouteParams = { params: Promise<{ id: string }> };
 
@@ -104,7 +123,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
 
     // Update paper with DOI
-    const updateData: UpdateTables<'papers'> = { doi, updated_at: new Date().toISOString() };
+    const updateData = { doi, updated_at: new Date().toISOString() };
     const { error: updateError } = await serviceClient
       .from('papers')
       .update(updateData)

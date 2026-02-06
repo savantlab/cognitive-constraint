@@ -12,7 +12,9 @@ export async function isAdmin(): Promise<boolean> {
   
   try {
     const decoded = Buffer.from(adminCookie.value, 'base64').toString('utf-8');
-    const [prefix, email] = decoded.split(':');
+    const parts = decoded.split(':');
+    const prefix = parts[0];
+    const email = parts[1];
     return prefix === 'admin' && email?.toLowerCase() === ADMIN_EMAIL.toLowerCase();
   } catch {
     return false;
@@ -29,7 +31,9 @@ export async function getAdminEmail(): Promise<string | null> {
   
   try {
     const decoded = Buffer.from(adminCookie.value, 'base64').toString('utf-8');
-    const [prefix, email] = decoded.split(':');
+    const parts = decoded.split(':');
+    const prefix = parts[0];
+    const email = parts[1];
     if (prefix === 'admin' && email) {
       return email;
     }
