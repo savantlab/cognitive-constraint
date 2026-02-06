@@ -139,6 +139,41 @@
   color: var(--foreground);
 }
 
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem;
+  margin-top: auto;
+}
+
+.footerInner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footerText {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.footerLinks {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footerLink {
+  color: var(--muted);
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.footerLink:hover {
+  color: var(--foreground);
+}
+
 @media (max-width: 768px) {
   .main {
     padding: 2rem 1.5rem;
@@ -158,5 +193,10 @@
 
   .paperTitle {
     font-size: 1.2rem;
+  }
+
+  .footerInner {
+    flex-direction: column;
+    text-align: center;
   }
 }

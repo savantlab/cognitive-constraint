@@ -80,8 +80,72 @@
   margin-bottom: 0;
 }
 
-.consulting {
+.ethics {
   background: var(--surface);
+  padding: 5rem 2rem;
+}
+
+.ethicsInner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.ethicsTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--foreground);
+}
+
+.ethicsText {
+  color: var(--muted);
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.ethicsLink {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.ethicsLink:hover {
+  text-decoration: underline;
+}
+
+.legal {
+  background: var(--surface);
+  padding: 5rem 2rem;
+}
+
+.legalInner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.legalTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--foreground);
+}
+
+.legalText {
+  color: var(--muted);
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.legalLink {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.legalLink:hover {
+  text-decoration: underline;
+}
+
+.consulting {
+  background: var(--background);
   padding: 5rem 2rem;
 }
 

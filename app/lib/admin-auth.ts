@@ -1,35 +1,47 @@
 import { cookies } from 'next/headers';
 
-const ADMIN_EMAILS = [
-  'stephie.maths@icloud.com',
-];
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'stephie.maths@icloud.com';
 
 export async function isAdmin(): Promise<boolean> {
-  const email = await getAccessEmail();
-  if (!email) return false;
-  return ADMIN_EMAILS.includes(email.toLowerCase());
+  const cookieStore = await cookies();
+  const adminCookie = cookieStore.get('ccj_admin');
+  
+  if (!adminCookie?.value) {
+    return false;
+  }
+  
+  try {
+    const decoded = Buffer.from(adminCookie.value, 'base64').toString('utf-8');
+    const [prefix, email] = decoded.split(':');
+    return prefix === 'admin' && email?.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+  } catch {
+    return false;
+  }
 }
 
-export async function getAccessEmail(): Promise<string | null> {
+export async function getAdminEmail(): Promise<string | null> {
   const cookieStore = await cookies();
-  const accessCookie = cookieStore.get('ccj_access');
+  const adminCookie = cookieStore.get('ccj_admin');
   
-  if (!accessCookie?.value) {
+  if (!adminCookie?.value) {
     return null;
   }
   
   try {
-    const decoded = Buffer.from(accessCookie.value, 'base64').toString('utf-8');
-    const [email] = decoded.split(':');
-    return email || null;
+    const decoded = Buffer.from(adminCookie.value, 'base64').toString('utf-8');
+    const [prefix, email] = decoded.split(':');
+    if (prefix === 'admin' && email) {
+      return email;
+    }
+    return null;
   } catch {
     return null;
   }
 }
 
 export async function requireAdmin(): Promise<{ authorized: true; email: string } | { authorized: false; email: null }> {
-  const email = await getAccessEmail();
+  const email = await getAdminEmail();
   if (!email) return { authorized: false, email: null };
-  if (!ADMIN_EMAILS.includes(email.toLowerCase())) return { authorized: false, email: null };
+  if (email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()) return { authorized: false, email: null };
   return { authorized: true, email };
 }

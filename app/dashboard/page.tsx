@@ -1,6 +1,12 @@
+import { redirect } from "next/navigation";
+import { isAdmin } from "../lib/admin-auth";
 import styles from "./dashboard.module.css";
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const authorized = await isAdmin();
+  if (!authorized) {
+    redirect("/dashboard/login");
+  }
   // These would come from Supabase in production
   const stats = {
     totalPapers: 8,
