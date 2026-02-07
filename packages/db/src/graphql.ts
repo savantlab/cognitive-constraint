@@ -12,7 +12,7 @@ export async function gql<T>(
 ): Promise<T> {
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
-    'apikey': process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    'apikey': process.env.SUPABASE_PUBLISHABLE_KEY!,
   };
 
   // Add auth header if user is authenticated

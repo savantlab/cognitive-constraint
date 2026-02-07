@@ -4,7 +4,7 @@ import { SignJWT, jwtVerify } from "jose";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
+  process.env.SUPABASE_SECRET_KEY!
 );
 
 const JWT_SECRET = new TextEncoder().encode(
