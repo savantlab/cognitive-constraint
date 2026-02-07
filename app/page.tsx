@@ -54,7 +54,7 @@ export default function Home() {
       <section className={styles.section}>
         <div className={styles.sectionInner}>
           <h2 className={styles.sectionTitle} data-aos="fade-up">
-            Cognitive Constraint Is For Radical Hard Science
+            Cognitive Constraint Is For Radical Hard Science & Art
           </h2>
           <p className={styles.sectionSubtitle} data-aos="fade-up" data-aos-delay="150">
             Our solutions live here and nowhere else. We also offer generous compensation for publishing under our groundbreaking work.
