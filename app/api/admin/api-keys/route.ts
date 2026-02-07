@@ -5,7 +5,7 @@ import { createApiKey } from "@/app/lib/api-auth";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
+  process.env.SUPABASE_SECRET_KEY!
 );
 
 // GET /api/admin/api-keys - List all API keys

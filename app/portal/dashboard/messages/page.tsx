@@ -6,7 +6,7 @@ import styles from "../../../dashboard/dashboard.module.css";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  process.env.SUPABASE_PUBLISHABLE_KEY!
 );
 
 interface Message {
