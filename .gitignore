@@ -38,3 +38,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 packages/eslint-config/node_modules
+fly.toml
