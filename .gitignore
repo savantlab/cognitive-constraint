@@ -39,3 +39,5 @@ yarn-error.log*
 next-env.d.ts
 packages/eslint-config/node_modules
 fly.toml
+
+business-plans/
